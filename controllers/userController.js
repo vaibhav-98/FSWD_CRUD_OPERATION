@@ -1,10 +1,11 @@
 const User = require("../model/userModel");
 
+
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
-    return res.satus(400).json({
+    return res.status(400).json({
       success: false,
       message: "Every field is required",
     });
@@ -27,5 +28,24 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-      
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.satus(400).json({
+        success: false,
+        message: "Invalid credencials",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Login successfile",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error login user",
+      error,
+    });
+  }
 };
