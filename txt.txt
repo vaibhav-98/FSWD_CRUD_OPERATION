@@ -2,3 +2,7 @@ get
 post 
 put
 delete
+
+mongodb://localhost:27017/my_database
+vaibhavtripathi1512
+yka0bmqsnhhrB4i8

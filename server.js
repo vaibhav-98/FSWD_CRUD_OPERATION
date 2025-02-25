@@ -1,8 +1,11 @@
 const express = require("express")
-//const dotenv = require(dotenv)
+ require("dotenv").config()
+const databaseConnect = require('./config/databaseConfig')
 const app = express()
 const userRoute = require('./routes/userRoute')
 
+
+databaseConnect()
 
 // global midd
 app.use(express.json())
@@ -15,6 +18,6 @@ app.use('/test/abc', (req,res) => {
 
 
 const PORT = 3000
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`server run at port ${PORT} `)
 })
